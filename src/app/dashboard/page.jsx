@@ -43,6 +43,26 @@ export default function DashboardPage() {
 
   const totalWinnings = winners.reduce((sum, w) => sum + (parseFloat(w.prize_amount) || 0), 0);
 
+  const quickActions = [
+    { href: '/dashboard/scores', label: 'Manage Scores', color: '#7c3aed',
+      icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '22px', height: '22px' }}><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
+    },
+    { href: '/dashboard/draws', label: 'View Draws', color: '#b45309',
+      icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '22px', height: '22px' }}><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" /></svg>
+    },
+    { href: '/dashboard/profile', label: 'Edit Profile', color: '#059669',
+      icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '22px', height: '22px' }}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+    },
+    ...(profile?.subscription_status !== 'active'
+      ? [{ href: '/dashboard/subscribe', label: 'Subscribe', color: '#d4a853',
+          icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '22px', height: '22px' }}><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><path d="M1 10h22" /></svg>
+        }]
+      : [{ href: '/charities', label: 'Charities', color: '#d4a853',
+          icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '22px', height: '22px' }}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>
+        }]
+    ),
+  ];
+
   return (
     <div className="page-container">
       <div className="section-header">
@@ -53,7 +73,7 @@ export default function DashboardPage() {
       {/* Subscription Alert */}
       {profile?.subscription_status !== 'active' && (
         <div className="alert alert-info" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-          <span>🔒 Your subscription is <strong>{profile?.subscription_status || 'inactive'}</strong>. Subscribe to access all features!</span>
+          <span>Your subscription is <strong>{profile?.subscription_status || 'inactive'}</strong>. Subscribe to access all features.</span>
           <Link href="/dashboard/subscribe" className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.85rem' }}>
             Subscribe Now
           </Link>
@@ -83,7 +103,7 @@ export default function DashboardPage() {
 
         <div className="stat-card">
           <div className="stat-label">Selected Charity</div>
-          <div className="stat-value" style={{ fontSize: '1.2rem', color: '#10b981' }}>
+          <div className="stat-value" style={{ fontSize: '1.2rem', color: '#34d399' }}>
             {profile?.charities?.name || 'None'}
           </div>
           <div style={{ marginTop: '4px', fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>
@@ -115,9 +135,9 @@ export default function DashboardPage() {
         {/* Recent Scores */}
         <div className="glass-card" style={{ padding: '28px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: '700' }}>🎯 Last 5 Scores</h2>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: '700' }}>Last 5 Scores</h2>
             <Link href="/dashboard/scores" style={{ color: 'var(--color-primary-light)', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '600' }}>
-              Manage →
+              Manage
             </Link>
           </div>
           {scores.length === 0 ? (
@@ -131,15 +151,16 @@ export default function DashboardPage() {
                   alignItems: 'center',
                   padding: '12px 16px',
                   borderRadius: '10px',
-                  background: 'rgba(15, 23, 42, 0.5)',
-                  border: '1px solid var(--color-border)',
+                  background: '#fffdf5',
+                  border: '1px solid #e2e8f0',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
                       width: '40px',
                       height: '40px',
                       borderRadius: '10px',
-                      background: 'var(--gradient-primary)',
+                      background: '#fde8c8',
+                      color: '#b45309',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -164,9 +185,9 @@ export default function DashboardPage() {
         {/* Winnings Overview */}
         <div className="glass-card" style={{ padding: '28px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h2 style={{ fontSize: '1.1rem', fontWeight: '700' }}>🏆 Winnings</h2>
+            <h2 style={{ fontSize: '1.1rem', fontWeight: '700' }}>Winnings</h2>
             <Link href="/dashboard/draws" style={{ color: 'var(--color-primary-light)', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '600' }}>
-              View Draws →
+              View Draws
             </Link>
           </div>
           {winners.length === 0 ? (
@@ -180,7 +201,7 @@ export default function DashboardPage() {
                   alignItems: 'center',
                   padding: '12px 16px',
                   borderRadius: '10px',
-                  background: 'rgba(15, 23, 42, 0.5)',
+                  background: 'rgba(10, 14, 26, 0.5)',
                   border: '1px solid var(--color-border)',
                 }}>
                   <div>
@@ -213,22 +234,14 @@ export default function DashboardPage() {
         gap: '16px',
         marginTop: '32px',
       }}>
-        {[
-          { href: '/dashboard/scores', icon: '⛳', label: 'Manage Scores', color: '#6366f1' },
-          { href: '/dashboard/draws', icon: '🎰', label: 'View Draws', color: '#06b6d4' },
-          { href: '/dashboard/profile', icon: '👤', label: 'Edit Profile', color: '#10b981' },
-          ...(profile?.subscription_status !== 'active'
-            ? [{ href: '/dashboard/subscribe', icon: '💳', label: 'Subscribe', color: '#f59e0b' }]
-            : [{ href: '/charities', icon: '💚', label: 'Charities', color: '#f59e0b' }]
-          ),
-        ].map((action) => (
+        {quickActions.map((action) => (
           <Link key={action.href} href={action.href} style={{ textDecoration: 'none' }}>
             <div className="glass-card" style={{
               padding: '20px',
               textAlign: 'center',
               cursor: 'pointer',
             }}>
-              <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{action.icon}</div>
+              <div style={{ marginBottom: '8px', color: action.color, display: 'flex', justifyContent: 'center' }}>{action.icon}</div>
               <div style={{ fontWeight: '600', fontSize: '0.9rem', color: 'var(--color-text-primary)' }}>
                 {action.label}
               </div>

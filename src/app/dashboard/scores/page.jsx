@@ -65,10 +65,9 @@ export default function ScoresPage() {
       setError('Date is invalid');
       return;
     }
-    const normalizedDate = parsedDate.toISOString().slice(0, 10); // YYYY-MM-DD
+    const normalizedDate = parsedDate.toISOString().slice(0, 10);
 
     if (editingScore) {
-      // Update
       const { error: updateErr } = await supabase
         .from('scores')
         .update({ score: scoreVal, date: normalizedDate })
@@ -79,9 +78,7 @@ export default function ScoresPage() {
       }
       setSuccess('Score updated!');
     } else {
-      // Insert new — enforce rolling 5
       if (scores.length >= 5) {
-        // Delete oldest score (by date)
         const sorted = [...scores].sort((a, b) => new Date(a.date) - new Date(b.date));
         const oldest = sorted[0];
         await supabase.from('scores').delete().eq('id', oldest.id);
@@ -126,14 +123,14 @@ export default function ScoresPage() {
   return (
     <div className="page-container" style={{ maxWidth: '800px' }}>
       <div className="section-header">
-        <h1>⛳ <span className="gradient-text">My Scores</span></h1>
+        <h1><span className="gradient-text">My Scores</span></h1>
         <p>Track your Stableford scores. Your last 5 scores are your draw entries.</p>
       </div>
 
       {/* Subscription gate */}
       {profile?.subscription_status !== 'active' && (
         <div className="alert alert-info">
-          🔒 You need an active subscription to add scores.
+          You need an active subscription to add scores.
         </div>
       )}
 
@@ -222,7 +219,7 @@ export default function ScoresPage() {
 
               {!editingScore && scores.length >= 5 && (
                 <div className="alert alert-info" style={{ marginBottom: '16px' }}>
-                  ⚠️ You already have 5 scores. Adding this will replace your oldest score.
+                  You already have 5 scores. Adding this will replace your oldest score.
                 </div>
               )}
 
@@ -242,7 +239,11 @@ export default function ScoresPage() {
       {/* Scores List */}
       {scores.length === 0 ? (
         <div className="glass-card" style={{ padding: '48px', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '16px' }}>⛳</div>
+          <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '48px', height: '48px' }}>
+              <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
+          </div>
           <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '8px' }}>No Scores Yet</h3>
           <p style={{ color: 'var(--color-text-secondary)' }}>Add your first Stableford score to start entering draws!</p>
         </div>
@@ -273,7 +274,7 @@ export default function ScoresPage() {
                 <div>
                   <div style={{ fontWeight: '600' }}>Stableford Score</div>
                   <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>
-                    📅 {new Date(s.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    {new Date(s.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </div>
                 </div>
               </div>

@@ -35,7 +35,6 @@ export default function AdminReportsPage() {
       const totalPaid = (winnersRes.data || []).filter(w => w.payment_status === 'paid').reduce((s, w) => s + parseFloat(w.prize_amount || 0), 0);
       const totalPending = (winnersRes.data || []).filter(w => w.payment_status !== 'paid').reduce((s, w) => s + parseFloat(w.prize_amount || 0), 0);
 
-      // Charity contribution estimate
       const users = usersRes.data || [];
       let charityTotal = 0;
       users.forEach(u => {
@@ -75,38 +74,38 @@ export default function AdminReportsPage() {
 
   const sections = [
     {
-      title: '👥 User Statistics',
+      title: 'User Statistics',
       items: [
-        { label: 'Total Users', value: stats.totalUsers, color: '#6366f1' },
-        { label: 'Active Subscribers', value: stats.activeSubscribers, color: '#10b981' },
-        { label: 'Lapsed Users', value: stats.lapsedUsers, color: '#ef4444' },
-        { label: 'Total Scores Recorded', value: stats.totalScores, color: '#06b6d4' },
+        { label: 'Total Users', value: stats.totalUsers, color: '#9333ea' },
+        { label: 'Active Subscribers', value: stats.activeSubscribers, color: '#16a34a' },
+        { label: 'Lapsed Users', value: stats.lapsedUsers, color: '#dc2626' },
+        { label: 'Total Scores Recorded', value: stats.totalScores, color: '#b45309' },
       ],
     },
     {
-      title: '💰 Prize Pool',
+      title: 'Prize Pool',
       items: [
-        { label: 'Total Pool Value', value: `£${stats.totalPoolValue.toFixed(2)}`, color: '#f59e0b' },
-        { label: 'Total Jackpot', value: `£${stats.totalJackpot.toFixed(2)}`, color: '#ef4444' },
-        { label: 'Total Paid Out', value: `£${stats.totalPaid.toFixed(2)}`, color: '#10b981' },
-        { label: 'Pending Payouts', value: `£${stats.totalPending.toFixed(2)}`, color: '#f59e0b' },
+        { label: 'Total Pool Value', value: `£${stats.totalPoolValue.toFixed(2)}`, color: '#d4a853' },
+        { label: 'Total Jackpot', value: `£${stats.totalJackpot.toFixed(2)}`, color: '#dc2626' },
+        { label: 'Total Paid Out', value: `£${stats.totalPaid.toFixed(2)}`, color: '#059669' },
+        { label: 'Pending Payouts', value: `£${stats.totalPending.toFixed(2)}`, color: '#d4a853' },
       ],
     },
     {
-      title: '🎰 Draw Statistics',
+      title: 'Draw Statistics',
       items: [
-        { label: 'Published Draws', value: stats.totalDraws, color: '#6366f1' },
-        { label: 'Total Winners', value: stats.totalWinners, color: '#10b981' },
-        { label: '5-Match (Jackpot)', value: stats.fiveMatchWins, color: '#f59e0b' },
-        { label: '4-Match', value: stats.fourMatchWins, color: '#06b6d4' },
-        { label: '3-Match', value: stats.threeMatchWins, color: '#818cf8' },
+        { label: 'Published Draws', value: stats.totalDraws, color: '#9333ea' },
+        { label: 'Total Winners', value: stats.totalWinners, color: '#16a34a' },
+        { label: '5-Match (Jackpot)', value: stats.fiveMatchWins, color: '#d4a853' },
+        { label: '4-Match', value: stats.fourMatchWins, color: '#b45309' },
+        { label: '3-Match', value: stats.threeMatchWins, color: '#f59e0b' },
       ],
     },
     {
-      title: '💚 Charity Impact',
+      title: 'Charity Impact',
       items: [
-        { label: 'Charities Registered', value: stats.totalCharities, color: '#10b981' },
-        { label: 'Est. Monthly Contributions', value: `£${stats.charityTotal.toFixed(2)}`, color: '#10b981' },
+        { label: 'Charities Registered', value: stats.totalCharities, color: '#059669' },
+        { label: 'Est. Monthly Contributions', value: `£${stats.charityTotal.toFixed(2)}`, color: '#059669' },
       ],
     },
   ];
@@ -114,7 +113,7 @@ export default function AdminReportsPage() {
   return (
     <div className="page-container">
       <div className="section-header">
-        <h1>📊 <span className="gradient-text">Reports & Analytics</span></h1>
+        <h1><span className="gradient-text">Reports & Analytics</span></h1>
         <p>Comprehensive platform statistics and insights</p>
       </div>
 

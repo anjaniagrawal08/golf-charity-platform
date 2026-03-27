@@ -189,12 +189,12 @@ const [charities, setCharities] = useState([]);
             <div style={{
               padding: '20px',
               borderRadius: '12px',
-              background: 'rgba(16, 185, 129, 0.05)',
-              border: '1px solid rgba(16, 185, 129, 0.15)',
+              background: 'rgba(5, 150, 105, 0.04)',
+              border: '1px solid rgba(5, 150, 105, 0.12)',
               marginBottom: '20px',
             }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#10b981', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                💚 Choose Your Charity
+              <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#34d399', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                Choose Your Charity
               </div>
 
               <div style={{ marginBottom: '16px' }}>
@@ -202,14 +202,14 @@ const [charities, setCharities] = useState([]);
                 {charitiesError ? (
                   <div style={{
                     padding: '12px',
-                    background: 'rgba(239, 68, 68, 0.1)',
-                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    background: 'rgba(220, 38, 38, 0.08)',
+                    border: '1px solid rgba(220, 38, 38, 0.2)',
                     borderRadius: '8px',
                     color: '#dc2626',
                     fontSize: '0.85rem',
                     textAlign: 'center'
                   }}>
-                    ⚠️ {charitiesError} <button 
+                    {charitiesError} <button 
                       type="button" 
                       className="text-primary hover:underline ml-1" 
                       onClick={() => window.location.reload()}
@@ -224,8 +224,8 @@ const [charities, setCharities] = useState([]);
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: '12px',
-                    background: 'rgba(156, 163, 175, 0.1)',
-                    border: '1px solid rgba(156, 163, 175, 0.3)',
+                    background: 'rgba(139, 149, 169, 0.08)',
+                    border: '1px solid rgba(139, 149, 169, 0.2)',
                     borderRadius: '8px',
                     color: 'var(--color-text-secondary)',
                     height: '48px'
@@ -265,11 +265,11 @@ const [charities, setCharities] = useState([]);
                     max="50"
                     value={formData.charityPercentage}
                     onChange={handleChange}
-                    style={{ flex: 1, accentColor: '#10b981' }}
+                    style={{ flex: 1, accentColor: '#059669' }}
                   />
                   <span style={{
-                    background: 'rgba(16, 185, 129, 0.15)',
-                    color: '#10b981',
+                    background: 'rgba(5, 150, 105, 0.12)',
+                    color: '#34d399',
                     padding: '4px 12px',
                     borderRadius: '8px',
                     fontWeight: '700',

@@ -40,7 +40,7 @@ export default function CharityDetailPage() {
   return (
     <div className="page-container" style={{ maxWidth: '800px' }}>
       <Link href="/charities" style={{ color: 'var(--color-primary-light)', textDecoration: 'none', fontSize: '0.9rem', display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '32px' }}>
-        ← Back to Charities
+        Back to Charities
       </Link>
 
       <div className="glass-card" style={{ padding: '40px' }}>
@@ -53,14 +53,15 @@ export default function CharityDetailPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '2rem',
           }}>
-            💚
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+            </svg>
           </div>
           <div>
             <h1 style={{ fontSize: '1.8rem', fontWeight: '800' }}>{charity.name}</h1>
             {charity.is_featured && (
-              <span className="badge badge-active" style={{ marginTop: '8px' }}>⭐ Featured Charity</span>
+              <span className="badge badge-active" style={{ marginTop: '8px' }}>Featured Charity</span>
             )}
           </div>
         </div>
@@ -77,23 +78,23 @@ export default function CharityDetailPage() {
         <div style={{
           padding: '24px',
           borderRadius: '14px',
-          background: 'rgba(16, 185, 129, 0.05)',
-          border: '1px solid rgba(16, 185, 129, 0.15)',
+          background: 'rgba(5, 150, 105, 0.04)',
+          border: '1px solid rgba(5, 150, 105, 0.12)',
           marginBottom: '28px',
         }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#10b981', marginBottom: '12px' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#34d399', marginBottom: '12px' }}>
             How Your Subscription Helps
           </h3>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', lineHeight: '1.7' }}>
-            When you subscribe and select {charity.name} as your charity, a minimum of 10% of your subscription fee 
-            is donated directly to them. You can choose to contribute more if you wish. Together, our subscribers 
+            When you subscribe and select {charity.name} as your charity, a minimum of 10% of your subscription fee
+            is donated directly to them. You can choose to contribute more if you wish. Together, our subscribers
             have already made a significant impact.
           </p>
         </div>
 
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Link href="/signup" className="btn-primary">
-            Subscribe & Support →
+            Subscribe & Support
           </Link>
           <Link href="/charities" className="btn-secondary">
             View All Charities

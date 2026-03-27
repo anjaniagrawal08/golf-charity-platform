@@ -46,7 +46,6 @@ export default function DrawsPage() {
 
     setShowUpload(null);
     alert('Proof uploaded successfully!');
-    // Refresh
     const { data } = await supabase.from('winners')
       .select('*, draws(draw_numbers, month)')
       .eq('user_id', user.id)
@@ -65,14 +64,14 @@ export default function DrawsPage() {
   return (
     <div className="page-container" style={{ maxWidth: '900px' }}>
       <div className="section-header">
-        <h1>🎰 <span className="gradient-text">Draws & Results</span></h1>
+        <h1><span className="gradient-text">Draws & Results</span></h1>
         <p>View monthly draw results and your winnings</p>
       </div>
 
       {/* My Wins Section */}
       {myWins.length > 0 && (
         <div style={{ marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '20px' }}>🏆 My Wins</h2>
+          <h2 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '20px' }}>My Wins</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {myWins.map((win) => (
               <div key={win.id} className="glass-card" style={{ padding: '24px' }}>
@@ -92,7 +91,7 @@ export default function DrawsPage() {
                       }}>
                         {win.match_type}-Match
                       </span>
-                      {win.match_type === 5 && <span>💎 JACKPOT</span>}
+                      {win.match_type === 5 && <span style={{ color: 'var(--color-accent)', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.05em' }}>JACKPOT</span>}
                     </div>
                     <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>
                       Draw: {win.draws?.month} | Numbers: {win.draws?.draw_numbers?.join(', ')}
@@ -129,13 +128,13 @@ export default function DrawsPage() {
                           </div>
                         ) : (
                           <button className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.85rem' }} onClick={() => setShowUpload(win.id)}>
-                            📤 Upload Score Proof
+                            Upload Score Proof
                           </button>
                         )}
                       </>
                     ) : (
                       <div style={{ color: 'var(--color-success)', fontSize: '0.85rem' }}>
-                        ✅ Proof uploaded — awaiting admin review
+                        Proof uploaded — awaiting admin review
                       </div>
                     )}
                   </div>
@@ -147,10 +146,12 @@ export default function DrawsPage() {
       )}
 
       {/* Draw History */}
-      <h2 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '20px' }}>📋 Draw History</h2>
+      <h2 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '20px' }}>Draw History</h2>
       {draws.length === 0 ? (
         <div className="glass-card" style={{ padding: '48px', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🎰</div>
+          <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light)" strokeWidth="1.5" style={{ width: '48px', height: '48px' }}><rect x="2" y="7" width="20" height="14" rx="2" ry="2" strokeLinecap="round" strokeLinejoin="round" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </div>
           <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '8px' }}>No Draws Yet</h3>
           <p style={{ color: 'var(--color-text-secondary)' }}>Draws happen monthly. Stay tuned!</p>
         </div>

@@ -50,7 +50,7 @@ export default function SubscribePage() {
 
       {profile?.subscription_status === 'active' && (
         <div className="alert alert-success" style={{ textAlign: 'center' }}>
-          ✅ You already have an active {profile.subscription_type} subscription! Renews {new Date(profile.renewal_date).toLocaleDateString()}.
+          You already have an active {profile.subscription_type} subscription! Renews {new Date(profile.renewal_date).toLocaleDateString()}.
         </div>
       )}
 
@@ -71,7 +71,7 @@ export default function SubscribePage() {
               padding: '32px',
               cursor: 'pointer',
               borderColor: selectedPlan === key ? 'var(--color-primary)' : undefined,
-              background: selectedPlan === key ? 'rgba(99, 102, 241, 0.08)' : undefined,
+              background: selectedPlan === key ? 'rgba(124, 58, 237, 0.06)' : undefined,
               position: 'relative',
               textAlign: 'center',
             }}
@@ -82,7 +82,7 @@ export default function SubscribePage() {
                 top: '-10px',
                 right: '16px',
                 background: 'var(--gradient-accent)',
-                color: 'white',
+                color: '#0a0e1a',
                 padding: '4px 12px',
                 borderRadius: '20px',
                 fontSize: '0.75rem',
@@ -107,7 +107,7 @@ export default function SubscribePage() {
                 key === 'yearly' ? 'Best value!' : 'Cancel anytime',
               ].map((feature, i) => (
                 <li key={i} style={{ padding: '6px 0', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: 'var(--color-success)' }}>✓</span> {feature}
+                  <span style={{ color: 'var(--color-success)' }}>&#10003;</span> {feature}
                 </li>
               ))}
             </ul>

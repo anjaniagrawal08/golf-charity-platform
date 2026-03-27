@@ -99,7 +99,7 @@ export default function AdminScoresPage() {
   return (
     <div className="page-container">
       <div className="section-header">
-        <h1>⛳ <span className="gradient-text">Score Management</span></h1>
+        <h1><span className="gradient-text">Score Management</span></h1>
         <p>View and edit scores for all users</p>
       </div>
 
@@ -123,7 +123,7 @@ export default function AdminScoresPage() {
                   padding: '12px 16px',
                   borderRadius: '10px',
                   cursor: 'pointer',
-                  background: selectedUser?.id === u.id ? 'rgba(99, 102, 241, 0.15)' : 'rgba(30, 41, 59, 0.5)',
+                  background: selectedUser?.id === u.id ? 'rgba(124, 58, 237, 0.1)' : 'rgba(17, 24, 39, 0.5)',
                   border: `1px solid ${selectedUser?.id === u.id ? 'var(--color-primary)' : 'var(--color-border)'}`,
                   transition: 'all 0.2s',
                 }}
@@ -139,7 +139,9 @@ export default function AdminScoresPage() {
         <div>
           {!selectedUser ? (
             <div className="glass-card" style={{ padding: '48px', textAlign: 'center' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>👈</div>
+              <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-text-secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '48px', height: '48px' }}><polyline points="15 18 9 12 15 6" /></svg>
+              </div>
               <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '8px' }}>Select a User</h3>
               <p style={{ color: 'var(--color-text-secondary)' }}>Choose a user from the list to view and edit their scores.</p>
             </div>
@@ -185,7 +187,7 @@ export default function AdminScoresPage() {
                           <div>
                             <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Stableford Score</div>
                             <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem' }}>
-                              📅 {new Date(s.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                              {new Date(s.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                             </div>
                           </div>
                         </div>

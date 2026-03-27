@@ -56,7 +56,7 @@ export default function AdminUsersPage() {
   return (
     <div className="page-container">
       <div className="section-header">
-        <h1>👥 <span className="gradient-text">User Management</span></h1>
+        <h1><span className="gradient-text">User Management</span></h1>
         <p>View and manage all registered users</p>
       </div>
 

@@ -68,7 +68,7 @@ export default function ProfilePage() {
   return (
     <div className="page-container" style={{ maxWidth: '600px' }}>
       <div className="section-header">
-        <h1>👤 <span className="gradient-text">My Profile</span></h1>
+        <h1><span className="gradient-text">My Profile</span></h1>
         <p>Update your details and charity preferences</p>
       </div>
 
@@ -116,12 +116,12 @@ export default function ProfilePage() {
           <div style={{
             padding: '20px',
             borderRadius: '12px',
-            background: 'rgba(16, 185, 129, 0.05)',
-            border: '1px solid rgba(16, 185, 129, 0.15)',
+            background: 'rgba(5, 150, 105, 0.04)',
+            border: '1px solid rgba(5, 150, 105, 0.12)',
             marginBottom: '24px',
           }}>
-            <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#10b981', marginBottom: '16px' }}>
-              💚 Charity Preferences
+            <div style={{ fontSize: '0.85rem', fontWeight: '600', color: '#34d399', marginBottom: '16px' }}>
+              Charity Preferences
             </div>
 
             <div style={{ marginBottom: '16px' }}>
@@ -149,11 +149,11 @@ export default function ProfilePage() {
                   max="50"
                   value={formData.charityPercentage}
                   onChange={(e) => setFormData(prev => ({ ...prev, charityPercentage: e.target.value }))}
-                  style={{ flex: 1, accentColor: '#10b981' }}
+                  style={{ flex: 1, accentColor: '#059669' }}
                 />
                 <span style={{
-                  background: 'rgba(16, 185, 129, 0.15)',
-                  color: '#10b981',
+                  background: 'rgba(5, 150, 105, 0.12)',
+                  color: '#34d399',
                   padding: '4px 12px',
                   borderRadius: '8px',
                   fontWeight: '700',

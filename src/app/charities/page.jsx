@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function CharitiesPage() {
   const [charities, setCharities] = useState([]);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('all'); // all / featured
+  const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function CharitiesPage() {
                 borderRadius: '10px',
                 border: '1px solid',
                 borderColor: filter === f ? 'var(--color-primary)' : 'var(--color-border)',
-                background: filter === f ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+                background: filter === f ? 'rgba(124, 58, 237, 0.1)' : 'transparent',
                 color: filter === f ? 'var(--color-primary-light)' : 'var(--color-text-secondary)',
                 cursor: 'pointer',
                 fontSize: '0.85rem',
@@ -73,7 +73,7 @@ export default function CharitiesPage() {
                 transition: 'all 0.2s',
               }}
             >
-              {f === 'all' ? '🌍 All' : '⭐ Featured'}
+              {f === 'all' ? 'All' : 'Featured'}
             </button>
           ))}
         </div>
@@ -105,12 +105,13 @@ export default function CharitiesPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '1.4rem',
                   }}>
-                    💚
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '24px', height: '24px' }}>
+                      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                    </svg>
                   </div>
                   {charity.is_featured && (
-                    <span className="badge badge-active" style={{ fontSize: '0.7rem' }}>⭐ Featured</span>
+                    <span className="badge badge-active" style={{ fontSize: '0.7rem' }}>Featured</span>
                   )}
                 </div>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '10px' }}>{charity.name}</h3>
@@ -128,7 +129,7 @@ export default function CharitiesPage() {
                   fontSize: '0.85rem',
                   fontWeight: '600',
                 }}>
-                  Learn more →
+                  Learn more
                 </div>
               </div>
             </Link>

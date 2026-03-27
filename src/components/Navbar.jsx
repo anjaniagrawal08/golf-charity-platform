@@ -10,12 +10,13 @@ export default function Navbar() {
 
   return (
     <nav style={{
-      background: 'rgba(15, 23, 42, 0.85)',
-      backdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(51, 65, 85, 0.5)',
+      background: 'rgba(255, 255, 255, 0.90)',
+      backdropFilter: 'blur(12px)',
+      borderBottom: '1px solid rgba(226, 232, 240, 1)',
       position: 'sticky',
       top: 0,
       zIndex: 40,
+      color: '#1f2937',
     }}>
       <div style={{
         maxWidth: '1280px',
@@ -36,11 +37,15 @@ export default function Navbar() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '1.2rem',
+            boxShadow: '0 4px 12px rgba(234, 179, 8, 0.35)',
           }}>
-            🏆
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}>
+              <path d="M6 9l6-6 6 6" />
+              <path d="M12 3v14" />
+              <path d="M4 21h16" />
+            </svg>
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-text-primary)' }}>
+          <span style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-text-primary)', letterSpacing: '-0.01em' }}>
             Golf<span style={{ color: 'var(--color-primary-light)' }}>Charity</span>
           </span>
         </Link>
@@ -53,10 +58,10 @@ export default function Navbar() {
         }}
         className="desktop-nav"
         >
-          <Link href="/" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500', transition: 'color 0.2s' }}>
+          <Link href="/" style={{ color: '#1f2937', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', opacity: 1 }}>
             Home
           </Link>
-          <Link href="/charities" style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500', transition: 'color 0.2s' }}>
+          <Link href="/charities" style={{ color: '#1f2937', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '700', opacity: 1 }}>
             Charities
           </Link>
           {!loading && user && (
@@ -77,10 +82,10 @@ export default function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }} className="desktop-nav">
           {!loading && !user && (
             <>
-              <Link href="/login" className="btn-secondary" style={{ padding: '8px 20px', fontSize: '0.85rem' }}>
+              <Link href="/login" className="btn-secondary" style={{ padding: '8px 20px', fontSize: '0.9rem', fontWeight: '700' }}>
                 Log In
               </Link>
-              <Link href="/signup" className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.85rem' }}>
+              <Link href="/signup" className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem', fontWeight: '700' }}>
                 Sign Up
               </Link>
             </>

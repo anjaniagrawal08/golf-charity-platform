@@ -48,7 +48,7 @@ export default function AdminWinnersPage() {
   return (
     <div className="page-container">
       <div className="section-header">
-        <h1>🏆 <span className="gradient-text">Winners Management</span></h1>
+        <h1><span className="gradient-text">Winners Management</span></h1>
         <p>Review proofs, approve winners, and manage payouts</p>
       </div>
 
@@ -63,7 +63,7 @@ export default function AdminWinnersPage() {
               borderRadius: '8px',
               border: '1px solid',
               borderColor: filter === f ? 'var(--color-primary)' : 'var(--color-border)',
-              background: filter === f ? 'rgba(99, 102, 241, 0.15)' : 'transparent',
+              background: filter === f ? 'rgba(124, 58, 237, 0.1)' : 'transparent',
               color: filter === f ? 'var(--color-primary-light)' : 'var(--color-text-secondary)',
               cursor: 'pointer',
               fontSize: '0.85rem',
@@ -102,7 +102,7 @@ export default function AdminWinnersPage() {
                     }}>
                       {winner.match_type}-Match
                     </span>
-                    {winner.match_type === 5 && <span>💎</span>}
+                    {winner.match_type === 5 && <span style={{ color: 'var(--color-accent)', fontWeight: '600', fontSize: '0.75rem', letterSpacing: '0.05em' }}>JACKPOT</span>}
                   </div>
                 </div>
 
@@ -129,22 +129,22 @@ export default function AdminWinnersPage() {
                       className="btn-secondary"
                       style={{ padding: '6px 12px', fontSize: '0.8rem', textAlign: 'center', textDecoration: 'none' }}
                     >
-                      📄 View Proof
+                      View Proof
                     </a>
                   )}
                   {winner.payment_status === 'pending' && (
                     <>
                       <button className="btn-success" onClick={() => handleStatusUpdate(winner.id, 'approved')}>
-                        ✅ Approve
+                        Approve
                       </button>
                       <button className="btn-danger" onClick={() => handleReject(winner.id)}>
-                        ❌ Reject
+                        Reject
                       </button>
                     </>
                   )}
                   {winner.payment_status === 'approved' && (
                     <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '0.8rem' }} onClick={() => handleStatusUpdate(winner.id, 'paid')}>
-                      💰 Mark Paid
+                      Mark Paid
                     </button>
                   )}
                 </div>

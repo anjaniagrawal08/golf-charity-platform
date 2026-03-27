@@ -25,7 +25,6 @@ export default function AdminDrawsPage() {
   const handleSimulate = async () => {
     const drawNumbers = generateDrawNumbers();
 
-    // Get all active users with scores
     const { data: activeUsers } = await supabase
       .from('users')
       .select('id, name, email')
@@ -42,11 +41,9 @@ export default function AdminDrawsPage() {
 
     const winners = findWinners(drawNumbers, usersWithScores);
 
-    // Calculate pool
     const activeCount = activeUsers?.length || 0;
-    const monthlyContrib = activeCount * 9.99 * 0.20; // simplified
+    const monthlyContrib = activeCount * 9.99 * 0.20;
     
-    // Check for jackpot rollover
     const { data: lastPublished } = await supabase
       .from('draws')
       .select('id, prize_pool(*)')
@@ -58,7 +55,6 @@ export default function AdminDrawsPage() {
     if (lastPublished && lastPublished.length > 0) {
       const lastPool = lastPublished[0].prize_pool?.[0];
       if (lastPool) {
-        // Check if there were no 5-match winners in the last draw
         const { data: lastWinners } = await supabase
           .from('winners')
           .select('match_type')
@@ -88,7 +84,6 @@ export default function AdminDrawsPage() {
 
     const month = formatDrawMonth();
 
-    // Insert draw
     const { data: draw, error: drawError } = await supabase
       .from('draws')
       .insert({
@@ -106,7 +101,6 @@ export default function AdminDrawsPage() {
       return;
     }
 
-    // Insert prize pool
     await supabase.from('prize_pool').insert({
       draw_id: draw.id,
       total_pool: simulation.totalPool,
@@ -115,7 +109,6 @@ export default function AdminDrawsPage() {
       three_match_pool: simulation.pool.threeMatchPool,
     });
 
-    // Insert winners
     for (const tier of [5, 4, 3]) {
       const tierWinners = simulation.winners[tier];
       if (tierWinners.length > 0) {
@@ -153,19 +146,19 @@ export default function AdminDrawsPage() {
     <div className="page-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', flexWrap: 'wrap', gap: '12px' }}>
         <div>
-          <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>🎰 <span className="gradient-text">Draw Management</span></h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: '800' }}><span className="gradient-text">Draw Management</span></h1>
           <p style={{ color: 'var(--color-text-secondary)', marginTop: '4px' }}>Simulate and publish monthly draws</p>
         </div>
         <button className="btn-primary" onClick={handleSimulate}>
-          🎲 Simulate Draw
+          Simulate Draw
         </button>
       </div>
 
       {/* Simulation Preview */}
       {simulation && (
-        <div className="glass-card" style={{ padding: '32px', marginBottom: '32px', borderColor: 'rgba(245, 158, 11, 0.3)' }}>
+        <div className="glass-card" style={{ padding: '32px', marginBottom: '32px', borderColor: 'rgba(212, 168, 83, 0.2)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--color-accent)' }}>⚡ Simulation Preview</h2>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--color-accent)' }}>Simulation Preview</h2>
             <span className="badge badge-pending">Not Published</span>
           </div>
 
@@ -228,7 +221,7 @@ export default function AdminDrawsPage() {
                 </div>
                 {simulation.winners[tier].map((w, i) => (
                   <div key={i} style={{ paddingLeft: '16px', fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
-                    • {w.userName} ({w.email}) — matched: [{w.matchedScores.join(', ')}]
+                    {w.userName} ({w.email}) — matched: [{w.matchedScores.join(', ')}]
                   </div>
                 ))}
               </div>
@@ -237,20 +230,20 @@ export default function AdminDrawsPage() {
 
           <div style={{ display: 'flex', gap: '12px' }}>
             <button className="btn-primary" onClick={handlePublish} disabled={publishing}>
-              {publishing ? 'Publishing...' : '✅ Publish Official Draw'}
+              {publishing ? 'Publishing...' : 'Publish Official Draw'}
             </button>
             <button className="btn-secondary" onClick={() => setSimulation(null)}>
               Discard
             </button>
             <button className="btn-secondary" onClick={handleSimulate}>
-              🎲 Re-simulate
+              Re-simulate
             </button>
           </div>
         </div>
       )}
 
       {/* Draw History */}
-      <h2 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '20px' }}>📋 Draw History</h2>
+      <h2 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '20px' }}>Draw History</h2>
       {draws.length === 0 ? (
         <div className="glass-card" style={{ padding: '48px', textAlign: 'center' }}>
           <p style={{ color: 'var(--color-text-secondary)' }}>No draws yet. Simulate your first draw above!</p>

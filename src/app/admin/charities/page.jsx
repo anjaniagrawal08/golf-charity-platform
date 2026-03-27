@@ -67,7 +67,7 @@ export default function AdminCharitiesPage() {
     <div className="page-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', flexWrap: 'wrap', gap: '12px' }}>
         <div>
-          <h1 style={{ fontSize: '2rem', fontWeight: '800' }}>💚 <span className="gradient-text">Charity Management</span></h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: '800' }}><span className="gradient-text">Charity Management</span></h1>
           <p style={{ color: 'var(--color-text-secondary)', marginTop: '4px' }}>Add, edit, and manage charity organizations</p>
         </div>
         <button className="btn-primary" onClick={() => { resetForm(); setShowForm(true); }}>
@@ -86,7 +86,7 @@ export default function AdminCharitiesPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
               <h3 style={{ fontSize: '1rem', fontWeight: '700' }}>{charity.name}</h3>
               {charity.is_featured && (
-                <span className="badge badge-active" style={{ fontSize: '0.65rem' }}>⭐ Featured</span>
+                <span className="badge badge-active" style={{ fontSize: '0.65rem' }}>Featured</span>
               )}
             </div>
             <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.85rem', marginBottom: '16px', lineHeight: '1.6' }}>
